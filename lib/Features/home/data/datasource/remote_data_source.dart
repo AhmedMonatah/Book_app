@@ -20,6 +20,14 @@ abstract class HomeRemoteDataSource {
   return books;
   }
 
+
+  @override
+  Future<List<BookEntity>> fetchNewestBooks() async{
+  var data = await apiService.get(url: 'volumes?q=programming&Filtering=free-ebooks&Sorting=newest');
+  List<BookEntity> books = getBookList(data);
+  return books;
+  }
+
   List<BookEntity> getBookList(Map<String, dynamic> data) {
     List<BookEntity> books = [];
     for (var item in data['items']) {
@@ -28,9 +36,4 @@ abstract class HomeRemoteDataSource {
     return books;
   }
  
-  @override
-  Future<List<BookEntity>> fetchNewestBooks() {
-   
-  }
-
 }
