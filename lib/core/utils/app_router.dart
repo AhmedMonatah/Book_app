@@ -1,4 +1,3 @@
-
 import 'package:book_ui/Features/home/presentation/views/book_details_view.dart';
 import 'package:book_ui/Features/home/presentation/views/home_view.dart';
 import 'package:book_ui/Features/search/presentation/views/search_view.dart';
