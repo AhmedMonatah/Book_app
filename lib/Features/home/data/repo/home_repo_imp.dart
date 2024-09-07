@@ -27,9 +27,19 @@ return Left(failure(message: e.toString()));
   }
 
   @override
-  Future<Either<failure, List<BookEntity>>> featchNewestBooks() {
-    // TODO: implement featchNewestBooks
-    throw UnimplementedError();
+  Future<Either<failure, List<BookEntity>>> featchNewestBooks()async {
+try {
+  var booksList=homeLocalDataSource.fetchNewestBooks();
+  if(booksList.isEmpty){
+  return Right(booksList);
+  }
+  var box =await homeRemoteDataSource.fetchNewestBooks();
+  return Right(box);
+  
+  } on Exception catch (e) {
+return Left(failure(message: e.toString()));
+}
+
   }
   
 }
