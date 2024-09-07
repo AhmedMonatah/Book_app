@@ -21,7 +21,7 @@ class HomeRepoImplementation extends HomeRepo {
   return Right(box);
   
   } on Exception catch (e) {
-return Left(failure(message: e.toString()));
+return Left(ServerFailure(message: e.toString()));
 }
 
   }
@@ -35,9 +35,8 @@ try {
   }
   var box =await homeRemoteDataSource.fetchNewestBooks();
   return Right(box);
-  
   } on Exception catch (e) {
-return Left(failure(message: e.toString()));
+return Left(ServerFailure(message: e.toString()));
 }
 
   }
