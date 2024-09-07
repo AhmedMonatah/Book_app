@@ -4,6 +4,7 @@ import 'package:book_ui/Features/home/domain/entites/book_entity.dart';
 import 'package:book_ui/Features/home/domain/repos/home_repo.dart';
 import 'package:book_ui/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 class HomeRepoImplementation extends HomeRepo {
   final HomeRemoteDataSource homeRemoteDataSource;
@@ -21,7 +22,12 @@ class HomeRepoImplementation extends HomeRepo {
   return Right(box);
   
   } on Exception catch (e) {
-return Left(ServerFailure(message: e.toString()));
+   
+if (e is DioException) {
+  return Left(ServerFailure.fromDiorError(e));
+}else{
+  return Left(ServerFailure(message: e.toString()));
+}
 }
 
   }
@@ -36,7 +42,12 @@ try {
   var box =await homeRemoteDataSource.fetchNewestBooks();
   return Right(box);
   } on Exception catch (e) {
-return Left(ServerFailure(message: e.toString()));
+   
+if (e is DioException) {
+  return Left(ServerFailure.fromDiorError(e));
+}else{
+  return Left(ServerFailure(message: e.toString()));
+}
 }
 
   }
