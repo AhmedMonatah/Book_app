@@ -1,4 +1,6 @@
 import 'package:book_ui/Features/home/domain/entites/book_entity.dart';
+import 'package:book_ui/constants.dart';
+import 'package:hive/hive.dart';
 
 abstract class HomeLocalDataSource {
 
@@ -9,15 +11,15 @@ abstract class HomeLocalDataSource {
 class HomeLocalDataSourceImplementation implements HomeLocalDataSource{
   @override
   List<BookEntity> fetchFeaturedBooks() {
-    // TODO: implement fe
-    // tchFeaturedBooks
-    throw UnimplementedError();
+  var box=Hive.box<BookEntity>(kfeatherBok);
+  return box.values.toList();
+
   }
   
   @override
   List<BookEntity> fetchNewestBooks() {
-    // TODO: implement fetchNewestBooks
-    throw UnimplementedError();
+  var box=Hive.box<BookEntity>(kfeatherNewBox);
+  return box.values.toList();
   }
   
   }

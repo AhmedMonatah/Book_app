@@ -31,6 +31,7 @@ abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchNewestBooks() async{
   var data = await apiService.get(url: 'volumes?q=programming&Filtering=free-ebooks&Sorting=newest');
   List<BookEntity> books = getBookList(data);
+  saveBoxData(books, kfeatherNewBox);
   return books;
   }
 
