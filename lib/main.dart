@@ -7,6 +7,7 @@ import 'package:book_ui/Features/home/presentation/manger/featured_book_cubit/fe
 import 'package:book_ui/constants.dart';
 import 'package:book_ui/core/utils/app_router.dart';
 import 'package:book_ui/core/utils/functions/set_up_service_locator.dart';
+import 'package:book_ui/core/utils/simple_bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -19,6 +20,7 @@ void main() async {
   setUpServiceLocator();
   await Hive.openBox<BookEntity>(kfeatherBok);
   await Hive.openBox<BookEntity>(kfeatherNewBox);
+  Bloc.observer = SimpleBlocObserver();
   runApp(const Bookly());
 }
 
