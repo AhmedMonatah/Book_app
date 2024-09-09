@@ -6,7 +6,7 @@ import 'package:dartz/dartz.dart';
 class FetchFeaturedBooksUseCase extends UseCase<List<BookEntity>, NoParam> {
   final HomeRepo homeRepo;
 
-  FetchFeaturedBooksUseCase({required this.homeRepo});
+  FetchFeaturedBooksUseCase(this.homeRepo);
 
   @override
   Future<Either<failure, List<BookEntity>>> call([NoParam? params]) async {
